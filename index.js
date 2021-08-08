@@ -84,7 +84,7 @@ class Car {
   }
   drive(distance) {
     for (let i = 0; i < distance; i++) {
-      console.log(this.tank);
+      // console.log(this.tank);
       if (this.tank > 0) {
         this.odometer++;
         this.tank =
@@ -95,11 +95,11 @@ class Car {
     }
   }
 }
-const cav = new Car('cav', 20);
+// const cav = new Car('cav', 20);
 
-console.log(cav);
-cav.fill(10);
-cav.drive(100);
+// console.log(cav);
+// cav.fill(10);
+// cav.drive(100);
 
 /*
   TASK 3
@@ -113,7 +113,16 @@ cav.drive(100);
         + Speaking should return a phrase `Hello my name is {name}, I am from {location}`.
         + {name} and {location} of course come from the instance's own properties.
 */
-class Lambdasian {}
+class Lambdasian {
+  constructor(obj) {
+    this.name = obj.name;
+    this.age = obj.age;
+    this.location = obj.location;
+  }
+  speak() {
+    return `Hello my name is ${this.name}, I am from ${this.location}`;
+  }
+}
 
 /*
   TASK 4
@@ -129,7 +138,20 @@ class Lambdasian {}
         + `demo` receives a `subject` string as an argument and returns the phrase 'Today we are learning about {subject}' where subject is the param passed in.
         + `grade` receives a `student` object and a `subject` string as arguments and returns '{student.name} receives a perfect score on {subject}'
 */
-class Instructor {}
+class Instructor extends Lambdasian {
+  constructor(obj) {
+    super(obj);
+    this.specialty = obj.specialty;
+    this.favLanguage = obj.favLanguage;
+    this.catchPhrase = obj.catchPhrase;
+  }
+  demo(sub) {
+    return `Today we are learning about ${sub}`;
+  }
+  grade(obj, string) {
+    return `${obj.name} receives a perfect score on ${string}`;
+  }
+}
 /*
   TASK 5
     - Write a Student class extending Lambdasian.
@@ -145,7 +167,23 @@ class Instructor {}
         + `PRAssignment` a method that receives a subject as an argument and returns `student.name has submitted a PR for {subject}`
         + `sprintChallenge` similar to PRAssignment but returns `student.name has begun sprint challenge on {subject}`
 */
-class Student {}
+class Student extends Lambdasian {
+  constructor(obj) {
+    super(obj);
+    this.previousBackground = obj.previousBackground;
+    this.className = obj.className;
+    this.favSubjects = obj.favSubjects;
+  }
+  listSubjects() {
+    return `Loving ${this.favSubjects.join(', ')}!`;
+  }
+  PRAssignment(sub) {
+    return `${this.name} has submitted a PR for ${sub}`;
+  }
+  sprintChallenge(sub) {
+    return `${this.name} has begun sprint challenge on ${sub}`;
+  }
+}
 
 /*
   TASK 6
