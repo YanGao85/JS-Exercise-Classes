@@ -1,4 +1,3 @@
-
 /*
   EXAMPLE TASK:
     - Write an Airplane class whose constructor initializes `name` from an argument.
@@ -9,6 +8,7 @@
 */
 
 // EXAMPLE SOLUTION CODE:
+
 class Airplane {
   constructor(name) {
     this.name = name;
@@ -42,7 +42,20 @@ class Airplane {
 */
 
 class Person {
-  
+  constructor(name, age) {
+    this.name = name;
+    this.age = age;
+    this.stomach = [];
+  }
+  eat(someFood) {
+    if (this.stomach.length < 10) this.stomach.push(someFood);
+  }
+  poop() {
+    this.stomach = [];
+  }
+  toString() {
+    return `${this.name}, ${this.age}`;
+  }
 }
 
 /*
@@ -60,8 +73,33 @@ class Person {
 */
 
 class Car {
-  
+  constructor(model, milesPerGallon) {
+    this.model = model;
+    this.milesPerGallon = milesPerGallon;
+    this.tank = 0;
+    this.odometer = 0;
+  }
+  fill(gallons) {
+    this.tank += gallons;
+  }
+  drive(distance) {
+    for (let i = 0; i < distance; i++) {
+      console.log(this.tank);
+      if (this.tank > 0) {
+        this.odometer++;
+        this.tank =
+          Math.round((this.tank - 1 / this.milesPerGallon) * 100) / 100;
+      } else {
+        return `I ran out of fuel at ${this.odometer}`;
+      }
+    }
+  }
 }
+const cav = new Car('cav', 20);
+
+console.log(cav);
+cav.fill(10);
+cav.drive(100);
 
 /*
   TASK 3
@@ -75,9 +113,7 @@ class Car {
         + Speaking should return a phrase `Hello my name is {name}, I am from {location}`.
         + {name} and {location} of course come from the instance's own properties.
 */
-class Lambdasian {
-  
-}
+class Lambdasian {}
 
 /*
   TASK 4
@@ -93,9 +129,7 @@ class Lambdasian {
         + `demo` receives a `subject` string as an argument and returns the phrase 'Today we are learning about {subject}' where subject is the param passed in.
         + `grade` receives a `student` object and a `subject` string as arguments and returns '{student.name} receives a perfect score on {subject}'
 */
-class Instructor {
-
-}
+class Instructor {}
 /*
   TASK 5
     - Write a Student class extending Lambdasian.
@@ -111,9 +145,7 @@ class Instructor {
         + `PRAssignment` a method that receives a subject as an argument and returns `student.name has submitted a PR for {subject}`
         + `sprintChallenge` similar to PRAssignment but returns `student.name has begun sprint challenge on {subject}`
 */
-class Student {
-   
-}
+class Student {}
 
 /*
   TASK 6
@@ -128,9 +160,7 @@ class Student {
         + `standUp` a method that takes in a slack channel and returns `{name} announces to {channel}, @channel standy times!`
         + `debugsCode` a method that takes in a student object and a subject and returns `{name} debugs {student.name}'s code on {subject}`
 */
-class ProjectManager {
-   
-}
+class ProjectManager {}
 /*
   STRETCH PROBLEM (no tests!)
     - Extend the functionality of the Student by adding a prop called grade and setting it equal to a number between 1-100.
@@ -140,10 +170,9 @@ class ProjectManager {
       + If the student's grade is above a 70% let them graduate! Otherwise go back to grading their assignments to increase their score.
 */
 
-
 //End of Challenge
 /* 🛑🛑🛑🛑🛑🛑🛑🛑🛑🛑 Please do not modify anything below this line 🛑🛑🛑🛑🛑🛑🛑🛑🛑🛑 */
-function foo(){
+function foo() {
   return 'bar';
 }
 
@@ -154,5 +183,5 @@ module.exports = {
   Lambdasian,
   Instructor,
   Student,
-  ProjectManager
-}
+  ProjectManager,
+};
